@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/chating?serverTimezone=Asia/Seoul
+    username: root
+    password: 131072
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
