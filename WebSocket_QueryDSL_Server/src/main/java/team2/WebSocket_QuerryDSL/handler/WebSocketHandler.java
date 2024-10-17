@@ -77,13 +77,17 @@ public class WebSocketHandler extends TextWebSocketHandler {
         System.out.println(payload);
         try {
             // JSON 데이터를 파싱
-//            JsonNode jsonNode = objectMapper.readTree(payload);
+            JsonNode jsonNode = objectMapper.readTree(payload);
+            Long userId = jsonNode.get("userId").asLong();
+            Long chatRoomId = jsonNode.get("chatRoomId").asLong();
+            String chatMessage = jsonNode.get("message").asText();
+            System.out.println(chatMessage);
 //            String username = jsonNode.has("username") ? jsonNode.get("username").asText() : "Anonymous";
 //            String userMessage = jsonNode.has("message") ? jsonNode.get("message").asText() : "";
 //            int chatRoom = jsonNode.has("chatRoom") ? jsonNode.get("chatRoom").asInt() : 0;
 
             // 메시지 저장
-//            messageService.createMessage(username, userMessage, chatRoom);
+            messageService.createMessage(userId,chatRoomId, chatMessage);
 
             // 브로드캐스트 메시지 전송
             broadcastMessage(new TextMessage(payload));

@@ -19,11 +19,11 @@ public class MessageServiceImpl implements MessageService {
     private final UserRepository userRepository;
 
     @Override
-    public String createMessage(String username, String userMessage, int chatRoom) {
+    public String createMessage(Long userId, Long chatRoomId , String userMessage) {
         Message message = Message.builder()
-                .user(userRepository.findByName(username))
+                .user(userRepository.findById(userId).orElseThrow())
+                .chatRoom(chatRoomRepository.findById(chatRoomId).orElseThrow())
                 .message(userMessage)
-                .chatRoom(chatRoomRepository.findById((long) chatRoom).get())
                 .build();
         messageRepository.save(message);
 
