@@ -7,6 +7,15 @@ function Socket({ username, chatRoom }) {
   const [ws, setWs] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [inputMessage, setInputMessage] = useState('');
+  const [userId, setUserid] = useState(
+    JSON.parse(sessionStorage.getItem('userData')).id
+  );
+  const [userName, setUserName] = useState(
+    JSON.parse(sessionStorage.getItem('userData')).name
+  );
+  const [chatRoomId, setChatRoomId] = useState(
+    sessionStorage.getItem('chatRoomId')
+  );
   const messagesEndRef = useRef(null);
   // const [chatRoom, setChatRoom] = useState(chatRoom);
 
@@ -18,14 +27,15 @@ function Socket({ username, chatRoom }) {
     webSocket.onopen = () => {
       console.log('WebSocket 연결 성공');
       setIsConnected(true);
-      webSocket.send(JSON.stringify({ type: 'join', chatRoom, username }));
+      //webSocket.send(JSON.stringify({ type: 'join', chatRoom, username }));
     };
 
     webSocket.onmessage = (event) => {
       // 서버로부터 받은 메시지 처리
       console.log(event.data);
       const parsedData = JSON.parse(event.data);
-      const isMyMessage = parsedData.username === username;
+      console.log(parsedData);
+      const isMyMessage = parsedData.userId === userId;
       setMessage((prevMessages) => [...prevMessages, { sender: isMyMessage ? 'me' : 'server', text: `${parsedData.username}: ${parsedData.message}` }]);
     };
 
@@ -49,12 +59,17 @@ function Socket({ username, chatRoom }) {
   // 메시지 전송 함수
   const sendMessage = () => {
     if (ws && isConnected && inputMessage.trim() !== '') {
-      // var user = sessionStorage.getItem("userData")
-      // console.log(user);
-      // const messageToSend = `${username}: ${inputMessage}`;
-      const messageToSend = JSON.stringify({"username": `${inputMessage}`,"chatRoom":`${chatRoom}` }) //   //////////////////////////////////////
-      ws.send(messageToSend); // 서버로 메시지 전송
-      setMessage((prevMessages) => [...prevMessages, { sender: 'me', text: messageToSend }]);
+      const messageToSend = JSON.stringify(
+        {
+          userId:`${userId}`,
+          username:`${userName}`,
+          chatRoomId:`${chatRoomId}`,
+          message:`${inputMessage}`
+        }
+      )
+      ws.send(messageToSend);
+      console.log(messageToSend); // 서버로 메시지 전송
+      setMessage((prevMessages) => [...prevMessages, { sender: 'me', text: inputMessage }]);
       setInputMessage('');
     }
   };

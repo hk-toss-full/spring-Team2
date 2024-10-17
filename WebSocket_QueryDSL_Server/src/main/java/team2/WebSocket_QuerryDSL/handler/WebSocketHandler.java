@@ -74,19 +74,20 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
+        System.out.println(payload);
         try {
             // JSON 데이터를 파싱
-            JsonNode jsonNode = objectMapper.readTree(payload);
-            String username = jsonNode.has("username") ? jsonNode.get("username").asText() : "Anonymous";
-            String userMessage = jsonNode.has("message") ? jsonNode.get("message").asText() : "";
-            int chatRoom = jsonNode.has("chatRoom") ? jsonNode.get("chatRoom").asInt() : 0;
+//            JsonNode jsonNode = objectMapper.readTree(payload);
+//            String username = jsonNode.has("username") ? jsonNode.get("username").asText() : "Anonymous";
+//            String userMessage = jsonNode.has("message") ? jsonNode.get("message").asText() : "";
+//            int chatRoom = jsonNode.has("chatRoom") ? jsonNode.get("chatRoom").asInt() : 0;
 
             // 메시지 저장
-            messageService.createMessage(username, userMessage, chatRoom);
+//            messageService.createMessage(username, userMessage, chatRoom);
 
             // 브로드캐스트 메시지 전송
-            broadcastMessage(new TextMessage(username + ": " + userMessage));
-            System.out.println("Broadcast from " + username + ": " + userMessage);
+            broadcastMessage(new TextMessage(payload));
+            System.out.println("Broadcast from " + payload);
         } catch (Exception e) {
             System.out.println("Invalid message format: " + payload);
             session.sendMessage(new TextMessage("Error: Invalid message format"));
