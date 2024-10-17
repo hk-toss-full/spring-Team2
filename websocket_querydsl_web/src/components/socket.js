@@ -8,6 +8,7 @@ function Socket({ username, chatRoom }) {
   const [isConnected, setIsConnected] = useState(false);
   const [inputMessage, setInputMessage] = useState('');
   const messagesEndRef = useRef(null);
+  // const [chatRoom, setChatRoom] = useState(chatRoom);
 
   // WebSocket 연결 함수
   const connectWebSocket = () => {
@@ -48,7 +49,10 @@ function Socket({ username, chatRoom }) {
   // 메시지 전송 함수
   const sendMessage = () => {
     if (ws && isConnected && inputMessage.trim() !== '') {
-      const messageToSend = `${username}: ${inputMessage}`;
+      // var user = sessionStorage.getItem("userData")
+      // console.log(user);
+      // const messageToSend = `${username}: ${inputMessage}`;
+      const messageToSend = JSON.stringify({"username": `${inputMessage}`,"chatRoom":`${chatRoom}` }) //   //////////////////////////////////////
       ws.send(messageToSend); // 서버로 메시지 전송
       setMessage((prevMessages) => [...prevMessages, { sender: 'me', text: messageToSend }]);
       setInputMessage('');
