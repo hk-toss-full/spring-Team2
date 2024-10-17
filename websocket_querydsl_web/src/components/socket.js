@@ -38,8 +38,10 @@ function Socket({ username, chatRoom }) {
       const parsedData = JSON.parse(event.data);
       console.log(parsedData);
       const isMyMessage = parsedData.userId == userId;
+      const isMyChatRoom = parsedData.chatRoomId == chatRoomId;
+      if(isMyChatRoom){
       if(!isMyMessage){
-      setMessage((prevMessages) => [...prevMessages, { sender: isMyMessage ? 'me' : 'server', text: `${parsedData.username}: ${parsedData.message}` }]);}
+      setMessage((prevMessages) => [...prevMessages, { sender: isMyMessage ? 'me' : 'server', text: `${parsedData.username}: ${parsedData.message}` }]);}}
     };
 
     webSocket.onclose = () => {

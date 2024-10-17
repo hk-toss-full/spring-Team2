@@ -9,7 +9,6 @@ import team2.WebSocket_QuerryDSL.chatroom.repository.ChatRoomRepository;
 import team2.WebSocket_QuerryDSL.chatroom.service.ChatRoomService;
 import team2.WebSocket_QuerryDSL.chatroom.service.ChatRoomServiceImpl;
 import team2.WebSocket_QuerryDSL.user.domain.User;
-import team2.WebSocket_QuerryDSL.user.dto.UserResponse;
 import team2.WebSocket_QuerryDSL.user.service.UserService;
 import team2.WebSocket_QuerryDSL.user.service.UserServiceImpl;
 
@@ -42,7 +41,7 @@ public class TestByJoGyoungJun {
 
     @Test
     public void FindUserByName() {
-        UserResponse user = userService.getUserByName("조경준");
+        MessageResponse user = userService.getUserByName("조경준");
         assertNull(user);
     }
 

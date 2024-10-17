@@ -8,6 +8,6 @@ public record ChatRoomRequest(
         String title
 ) {
     public ChatRoom toEntity() {
-        return new ChatRoom(null,title,new ArrayList<>(),new ArrayList<>());
+        return ChatRoom.builder().title(title).build();
     }
 }

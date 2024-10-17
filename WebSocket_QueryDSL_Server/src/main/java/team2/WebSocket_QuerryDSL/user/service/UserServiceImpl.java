@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import team2.WebSocket_QuerryDSL.user.domain.User;
 import team2.WebSocket_QuerryDSL.user.dto.UserRequest;
-import team2.WebSocket_QuerryDSL.user.dto.UserResponse;
 import team2.WebSocket_QuerryDSL.user.repository.UserRepository;
 
 import java.util.List;
@@ -16,31 +15,31 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public UserResponse createUser(UserRequest request) {
+    public MessageResponse createUser(UserRequest request) {
         User entity = request.toEntity();
         userRepository.save(entity);
-        return UserResponse.from(entity);
+        return MessageResponse.from(entity);
     }
 
     @Override
-    public UserResponse getUserById(Long id) {
+    public MessageResponse getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow();
-        return UserResponse.from(user);
+        return MessageResponse.from(user);
     }
 
     @Override
-    public UserResponse getUserByName(String name) {
+    public MessageResponse getUserByName(String name) {
         User user = userRepository.findFirstByName(name);
-        return user != null ? UserResponse.from(user) : null;
+        return user != null ? MessageResponse.from(user) : null;
     }
 
 
     @Override
-    public List<UserResponse> getAllUsers() {
+    public List<MessageResponse> getAllUsers() {
         return userRepository.findAll()
                 .stream()
-                .map(UserResponse::from)
+                .map(MessageResponse::from)
                 .toList();
     }
 }
