@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "*")
 public class ChatRoomController {
     private final ChatRoomService chatRoomService;
 

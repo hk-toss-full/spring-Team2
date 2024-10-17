@@ -7,7 +7,9 @@ import team2.WebSocket_QuerryDSL.message.service.MessageService;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "*")
 public class MessageController {
     private final MessageService messageService;
+
+
 }
