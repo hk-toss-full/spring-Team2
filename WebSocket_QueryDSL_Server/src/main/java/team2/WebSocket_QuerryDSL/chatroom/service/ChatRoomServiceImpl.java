@@ -6,7 +6,6 @@ import team2.WebSocket_QuerryDSL.chatroom.domain.ChatRoom;
 import team2.WebSocket_QuerryDSL.chatroom.dto.ChatRoomRequest;
 import team2.WebSocket_QuerryDSL.chatroom.dto.ChatRoomResponse;
 import team2.WebSocket_QuerryDSL.chatroom.repository.ChatRoomRepository;
-import team2.WebSocket_QuerryDSL.user.repository.UserRepository;
 import team2.WebSocket_QuerryDSL.user.service.UserService;
 
 import java.util.List;

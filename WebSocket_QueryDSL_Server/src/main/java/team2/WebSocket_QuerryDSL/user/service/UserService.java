@@ -1,12 +1,13 @@
 package team2.WebSocket_QuerryDSL.user.service;
 
 import team2.WebSocket_QuerryDSL.user.dto.UserRequest;
+import team2.WebSocket_QuerryDSL.user.dto.UserResponse;
 
 import java.util.List;
 
 public interface UserService {
-    MessageResponse createUser(UserRequest request);
-    MessageResponse getUserById(Long id);
-    MessageResponse getUserByName(String name);
-    List<MessageResponse> getAllUsers();
+    UserResponse createUser(UserRequest request);
+    UserResponse getUserById(Long id);
+    UserResponse getUserByName(String name);
+    List<UserResponse> getAllUsers();
 }
