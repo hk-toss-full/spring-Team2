@@ -14,7 +14,6 @@ public record UserResponse(
 ) {
     public static UserResponse from(User user) {
 
-        return new UserResponse(
-        );
+        return new UserResponse(user.getId(), user.getName(), user.getChatRooms(), user.getMessages());
     }
 }

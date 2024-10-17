@@ -7,12 +7,11 @@ import team2.WebSocket_QuerryDSL.user.domain.User;
 import java.util.List;
 
 public record UserRequest(
-        String name,
-        List<ChatRoom> chatRooms,
-        List<Message> messages
+        String name
 ) {
     public User toEntity(){
         return User.builder()
+                .name(name)
                 .build();
     }
 }

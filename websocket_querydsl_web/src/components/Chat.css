@@ -1,0 +1,153 @@
+/* Chat.css */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  height: 600px;
+}
+
+.chat-header {
+  background-color: #0078ff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.username-container, .chatroom-selection-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  height: 400px;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.username-header, .chatroom-header {
+  background-color: #0078ff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.username-input-container, .chatroom-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.username-input-container input, .chatroom-button {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 80%;
+}
+
+.username-input-container button, .chatroom-button {
+  padding: 10px 20px;
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.username-input-container button:hover, .chatroom-button:hover {
+  background-color: #005bb5;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  max-width: 80%;
+}
+
+.my-message {
+  background-color: #ffeb3b;
+  align-self: flex-end;
+  color: black;
+  text-align: right;
+  margin-left: auto;
+}
+
+.server-message {
+  background-color: #ffffff;
+  align-self: flex-start;
+  color: black;
+  text-align: left;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.chat-input button {
+  padding: 8px 16px;
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chat-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ccc;
+}
+
+.chat-buttons button {
+  padding: 8px 16px;
+  background-color: #0078ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chat-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

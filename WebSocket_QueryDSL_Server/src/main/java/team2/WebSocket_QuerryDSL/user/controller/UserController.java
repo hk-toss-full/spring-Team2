@@ -1,18 +1,17 @@
 package team2.WebSocket_QuerryDSL.user.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import team2.WebSocket_QuerryDSL.user.dto.UserRequest;
 import team2.WebSocket_QuerryDSL.user.dto.UserResponse;
 import team2.WebSocket_QuerryDSL.user.service.UserService;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3001")
 public class UserController {
     private final UserService userService;
 
@@ -24,8 +23,12 @@ public class UserController {
     }
 
     @GetMapping("/api/v1/users")
-    public List<UserResponse> getAll(){
-        return userService.getAllUsers();
+    public List<UserResponse> getAll(@RequestParam(required = false) String name) {
+        if (name != null) {
+            UserResponse userResponse = userService.getUserByName(name);
+            return userResponse != null ? List.of(userResponse) : Collections.emptyList();
+        }
+        return userService.getAllUsers(); // 전체 사용자 조회
     }
 
 

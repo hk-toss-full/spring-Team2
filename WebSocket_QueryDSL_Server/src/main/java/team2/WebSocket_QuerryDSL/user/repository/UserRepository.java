@@ -5,4 +5,5 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import team2.WebSocket_QuerryDSL.user.domain.User;
 
 public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User> {
+    User findFirstByName(String name);
 }

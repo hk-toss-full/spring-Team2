@@ -30,6 +30,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserResponse getUserByName(String name) {
+        User user = userRepository.findFirstByName(name);
+        return user != null ? UserResponse.from(user) : null;
+    }
+
+
+    @Override
     public List<UserResponse> getAllUsers() {
         return userRepository.findAll()
                 .stream()
