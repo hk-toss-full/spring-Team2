@@ -39,4 +39,11 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user")
     @Builder.Default
     private List<Message> messages = new ArrayList<>();
+
+    public void addChatRoom(ChatRoom chatRoom) {
+        if (!this.chatRooms.contains(chatRoom)) {
+            this.chatRooms.add(chatRoom);
+            chatRoom.getUsers().add(this);
+        }
+    }
 }

@@ -75,9 +75,12 @@ function ChatRoomSelectionPage({ onChatRoomSelect }) {
       </div>
       <div className="chatroom-list">
         {chatRooms.map(({ id, name }) => (
-          <button key={id} className="chatroom-button" onClick={() => {
+          <button key={id} className="chatroom-button" onClick={ async() => {
+            let url = window.location.hostname;
+            const userData = JSON.parse(sessionStorage.getItem('userData'));
             onChatRoomSelect(name);
             sessionStorage.setItem('chatRoomId', id);
+            await axios.put(`http://${url}:8080/api/v1/users/${userData.id}`, { chatRoomId: id });
           }}>
             {name}
           </button>

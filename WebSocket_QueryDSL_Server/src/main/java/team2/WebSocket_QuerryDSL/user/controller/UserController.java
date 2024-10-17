@@ -2,6 +2,7 @@ package team2.WebSocket_QuerryDSL.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import team2.WebSocket_QuerryDSL.chatroom.dto.ChatRoomIdRequest;
 import team2.WebSocket_QuerryDSL.user.dto.UserRequest;
 import team2.WebSocket_QuerryDSL.user.dto.UserResponse;
 import team2.WebSocket_QuerryDSL.user.service.UserService;
@@ -31,5 +32,11 @@ public class UserController {
         return userService.getAllUsers(); // 전체 사용자 조회
     }
 
-
+    @PutMapping("/api/v1/users/{user-id}")
+    public UserResponse updateAddChatRoom(
+            @RequestBody ChatRoomIdRequest request,
+            @PathVariable("user-id") Long userId
+            ){
+        return userService.updateUserAddChatRoom(userId, request);
+    }
 }
