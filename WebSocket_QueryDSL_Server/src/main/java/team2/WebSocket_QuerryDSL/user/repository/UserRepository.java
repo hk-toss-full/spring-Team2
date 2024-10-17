@@ -6,4 +6,6 @@ import team2.WebSocket_QuerryDSL.user.domain.User;
 
 public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User> {
     User findFirstByName(String name);
+
+    User findByName(String name);
 }

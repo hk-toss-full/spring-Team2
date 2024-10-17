@@ -2,6 +2,7 @@ package team2.WebSocket_QuerryDSL.message.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import team2.WebSocket_QuerryDSL.chatroom.domain.ChatRoom;
@@ -11,6 +12,7 @@ import team2.WebSocket_QuerryDSL.user.domain.User;
 @Entity
 @Table(name = "MESSAGES")
 @Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Message extends BaseEntity {

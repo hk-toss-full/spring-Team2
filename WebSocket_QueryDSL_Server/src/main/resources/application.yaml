@@ -1,9 +1,12 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/chating?serverTimezone=Asia/Seoul
-    username: test
-    password: 131072
+    username: root
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: create
     show-sql: true
+
+server:
+  port: 8088
