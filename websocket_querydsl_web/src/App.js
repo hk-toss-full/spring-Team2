@@ -9,10 +9,12 @@ function UsernamePage({ onUsernameSubmit }) {
   const handleSubmit = async () => {
     if (username.trim() !== '') {
       try {
-        const response = await axios.get(`http://192.168.1.19:8080/api/v1/users?name=${username}`);
+        let url = window.location.hostname;
+        console.log(url);
+        const response = await axios.get(`http://${url}:8080/api/v1/users?name=${username}`);
         let userData = null;
         if (Array.isArray(response.data) && response.data.length === 0) {
-          userData = await axios.post('http://192.168.1.19:8080/api/v1/users', { name: username });
+          userData = await axios.post(`http://${url}:8080/api/v1/users`, { name: username });
           userData = userData.data;
           console.log('신규 유저를 생성했습니다.');
           alert('신규 유저를 생성했습니다.');
@@ -21,6 +23,7 @@ function UsernamePage({ onUsernameSubmit }) {
           console.log('이미 있는 유저입니다.');
           alert('이미 있는 유저입니다.');
           userData =  response.data[0];
+          console.log(userData);
         }
         sessionStorage.setItem('userData', JSON.stringify(userData));
         onUsernameSubmit(username);

@@ -21,7 +21,9 @@ function Socket({ username, chatRoom }) {
 
   // WebSocket 연결 함수
   const connectWebSocket = () => {
-    const websocketUrl = 'ws://192.168.1.19:8080/ws';
+    let url = window.location.hostname;
+    console.log(url);
+    const websocketUrl = `ws://${url}:8080/ws`;
     const webSocket = new WebSocket(websocketUrl);
     
     webSocket.onopen = () => {
@@ -35,8 +37,9 @@ function Socket({ username, chatRoom }) {
       console.log(event.data);
       const parsedData = JSON.parse(event.data);
       console.log(parsedData);
-      const isMyMessage = parsedData.userId === userId;
-      setMessage((prevMessages) => [...prevMessages, { sender: isMyMessage ? 'me' : 'server', text: `${parsedData.username}: ${parsedData.message}` }]);
+      const isMyMessage = parsedData.userId == userId;
+      if(!isMyMessage){
+      setMessage((prevMessages) => [...prevMessages, { sender: isMyMessage ? 'me' : 'server', text: `${parsedData.username}: ${parsedData.message}` }]);}
     };
 
     webSocket.onclose = () => {
