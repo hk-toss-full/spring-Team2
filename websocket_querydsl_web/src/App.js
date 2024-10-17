@@ -18,6 +18,7 @@ function UsernamePage({ onUsernameSubmit }) {
           console.log('이미 있는 유저입니다.');
           alert('이미 있는 유저입니다.');
           const userData = Array.isArray(response.data) ? response.data[0] : response.data;
+          console.log('userData:', userData);
           console.log(userData);
           sessionStorage.setItem('userData', JSON.stringify(userData));
         }
@@ -54,8 +55,13 @@ function UsernamePage({ onUsernameSubmit }) {
 }
 
 function ChatRoomSelectionPage({ onChatRoomSelect }) {
-  const chatRooms = ['프론트엔드', '백엔드', '풀스택'];
   const userData = JSON.parse(sessionStorage.getItem('userData'));
+
+  const chatRooms = [
+    { id: 1, name: '프론트엔드' },
+    { id: 2, name: '백엔드' },
+    { id: 3, name: '풀스택' }
+];
 
   return (
     <div className="chatroom-selection-container">
@@ -64,9 +70,12 @@ function ChatRoomSelectionPage({ onChatRoomSelect }) {
         <h1>채팅방 선택</h1>
       </div>
       <div className="chatroom-list">
-        {chatRooms.map((room, index) => (
-          <button key={index} className="chatroom-button" onClick={() => onChatRoomSelect(room)}>
-            {room}
+        {chatRooms.map(({ id, name }) => (
+          <button key={id} className="chatroom-button" onClick={() => {
+            onChatRoomSelect(name);
+            sessionStorage.setItem('chatRoomId', id);
+          }}>
+            {name}
           </button>
         ))}
       </div>

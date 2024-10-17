@@ -4,9 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.bind.annotation.RequestBody;
+import team2.WebSocket_QuerryDSL.chatroom.domain.ChatRoom;
+import team2.WebSocket_QuerryDSL.chatroom.repository.ChatRoomRepository;
+import team2.WebSocket_QuerryDSL.chatroom.service.ChatRoomService;
+import team2.WebSocket_QuerryDSL.chatroom.service.ChatRoomServiceImpl;
 import team2.WebSocket_QuerryDSL.user.domain.User;
-import team2.WebSocket_QuerryDSL.user.dto.UserRequest;
 import team2.WebSocket_QuerryDSL.user.dto.UserResponse;
 import team2.WebSocket_QuerryDSL.user.service.UserService;
 import team2.WebSocket_QuerryDSL.user.service.UserServiceImpl;
@@ -19,9 +21,14 @@ public class TestByJoGyoungJun {
     private UserRepository userRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ChatRoomRepository chatRoomRepository;
+    @Autowired
+    private ChatRoomService chatRoomService;
     @BeforeEach
     void setUp(){
     userService = new UserServiceImpl(userRepository);
+    chatRoomService = new ChatRoomServiceImpl(chatRoomRepository);
     }
     @Test
     public void createUsers() {
@@ -37,5 +44,15 @@ public class TestByJoGyoungJun {
     public void FindUserByName() {
         UserResponse user = userService.getUserByName("조경준");
         assertNull(user);
+    }
+
+    @Test
+    public void createCharRoom() {
+        ChatRoom chatRoom = ChatRoom.builder().title("백엔드").build();
+        chatRoomRepository.save(chatRoom);
+
+        assertNotNull(chatRoom.getTitle());
+        assertEquals("백엔드",chatRoom.getTitle());
+        assertEquals(1, chatRoom.getId());
     }
 }

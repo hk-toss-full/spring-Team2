@@ -1,12 +1,13 @@
 package team2.WebSocket_QuerryDSL.chatroom.service;
 
-import team2.WebSocket_QuerryDSL.chatroom.domain.ChatRoom;
+import team2.WebSocket_QuerryDSL.chatroom.dto.ChatRoomRequest;
+import team2.WebSocket_QuerryDSL.chatroom.dto.ChatRoomResponse;
 
 import java.util.List;
 
 public interface ChatRoomService {
-    ChatRoom getChatRoom(String roomName);
-    ChatRoom createChatRoom(ChatRoom chatRoom);
-    ChatRoom updateChatRoom(ChatRoom chatRoom);
-    List<ChatRoom> getAllChatRooms();
+    ChatRoomResponse createChatRoom(ChatRoomRequest request);
+    List<ChatRoomResponse> getAllChatRooms();
+    ChatRoomResponse getChatRoomById(Long id);
+    ChatRoomResponse getChatRoomByTitle(String title);
 }

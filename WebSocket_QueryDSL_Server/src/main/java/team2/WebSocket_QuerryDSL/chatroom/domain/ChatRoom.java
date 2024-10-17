@@ -21,6 +21,7 @@ import java.util.List;
 public class ChatRoom extends BaseEntity {
     @Id
     @Column(name = "CHAT_ROOM_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
