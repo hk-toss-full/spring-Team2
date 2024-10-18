@@ -26,10 +26,7 @@ public class TestByJoGyoungJun {
     @Autowired
     private ChatRoomService chatRoomService;
     @BeforeEach
-    void setUp(){
-    userService = new UserServiceImpl(userRepository);
-    chatRoomService = new ChatRoomServiceImpl(chatRoomRepository);
-    }
+
     @Test
     public void createUsers() {
         User user = User.builder().name("조경준").build();
@@ -44,6 +41,7 @@ public class TestByJoGyoungJun {
     public void FindUserByName() {
         UserResponse user = userService.getUserByName("조경준");
         assertNull(user);
+
     }
 
     @Test
